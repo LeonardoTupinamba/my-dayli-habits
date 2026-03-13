@@ -1,3 +1,4 @@
+import Contador from "./componentes/contador";
 import Header from "./componentes/Header";
 import BemVindo from "./componentes/Bemvindo";
 import Footer from "./componentes/Footer";
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div>
+      <Contador />
       <Header />
       <BemVindo nomeUsuario="turma iteam" totalHabitos={habits.length} />
       <SecaoHabitos titulo="Meus Hábitos">

@@ -1,4 +1,4 @@
-function Cabecalho({ titulo, descricao }) {
+function Header({ titulo, descricao }) {
   return (
     <header>
       <h1>{titulo}</h1>
@@ -7,4 +7,4 @@ function Cabecalho({ titulo, descricao }) {
   );
 }
 
-export default Cabecalho;
+export default Header;
