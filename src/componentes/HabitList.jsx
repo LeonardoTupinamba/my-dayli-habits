@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HabitCard from "./HabitCard";
 
 function HabitList() {
@@ -40,6 +40,10 @@ function HabitList() {
   const [novoNome, setNovoNome] = useState("");
   const [novaDescricao, setNovaDescricao] = useState("");
   const [novaCategoria, setNovaCategoria] = useState("");
+
+  useEffect(() => {
+    console.log("✅ HabitList montou");
+  }, []);
 
   const adicionarHabit = (event) => {
     event.preventDefault();
