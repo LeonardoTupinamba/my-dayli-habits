@@ -16,14 +16,15 @@ body {
     -apple-system,
     sans-serif;
   margin: 0;
-  background-color: #868688;
+  background-color: #2c2cde;
 }
 header,
 footer {
   padding: 16px;
-  background-color: rgb(243, 37, 37);
+  background-color: rgb(252, 224, 153);
   text-align: center;
   color: #030303;
+  border-style: solid;
 }
 main,
 section {
@@ -31,6 +32,10 @@ section {
   max-width: 800px;
   margin: 0 auto;
   color: #030303;
+
+  & h2 {
+    background-color: white;
+  }
 }
 .Bem-Vindo {
   background-color: #d0d0d1e4;
@@ -39,6 +44,7 @@ section {
   padding: 12px 16px;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
   margin-bottom: 12px;
+  border-style: solid;
 }
 .habit-form {
   background-color: #d0d0d1e4;
@@ -47,13 +53,14 @@ section {
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(7, 77, 239, 0.1);
   margin-bottom: 12px;
+  border-style: solid;
 }
 .habit-card {
   background-color: #d0d0d1e4;
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 1px 3px rgba(7, 77, 239, 0.1);
   margin-bottom: 12px;
+  border-style: solid;
 }
 
 .habit-form label {

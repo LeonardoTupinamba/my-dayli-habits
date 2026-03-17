@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import HabitCard from "./HabitCard";
 
 function HabitList() {
@@ -55,6 +55,12 @@ function HabitList() {
   const [novoNome, setNovoNome] = useState("");
   const [novaDescricao, setNovaDescricao] = useState("");
   const [novaCategoria, setNovaCategoria] = useState("");
+  const nomeInputRef = useRef(null);
+  const [erroNome, setErroNome] = useState("");
+
+  /*useEffect(() => {
+    document.title = `My Daily Habits - ${habits.length} hábito(s)`;
+  }, [habits]);*/
 
   useEffect(() => {
     localStorage.setItem("my-daily-habits", JSON.stringify(habits));
@@ -67,13 +73,14 @@ function HabitList() {
       alert("Informe um nome para o hábito.");
       return;
     }
+
     const novoHabit = {
-      id: crypto.randomUUID(),
+      id: Date.now(),
       nome: novoNome,
       descricao: novaDescricao,
-      meta: 7, // padrão
-      ativo: true, // padrão
-      diasFeitos: 0, // padrão
+      meta: 7,
+      ativo: true,
+      diasFeitos: 0,
       categoria: novaCategoria || "Geral",
     };
 
@@ -81,6 +88,24 @@ function HabitList() {
     setNovoNome("");
     setNovaDescricao("");
     setNovaCategoria("");
+
+    nomeInputRef.current?.focus();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // [name] é uma chave dinâmica — usa o valor de name como nome da propriedade
+    if (name === "novoNome") {
+      setNovoNome(value);
+      if (value.length > 0 && value.length < 3) {
+        setErroNome("O nome deve ter pelo menos 3 caracteres.");
+      } else {
+        setErroNome("");
+      }
+    }
+
+    if (name === "novaDescricao") setNovaDescricao(value);
+    if (name === "novaCategoria") setNovaCategoria(value);
   };
 
   const removerHabit = (id) => {
@@ -95,18 +120,24 @@ function HabitList() {
             Nome do hábito
             <input
               type="text"
+              name="novoNome"
               value={novoNome}
-              onChange={(e) => setNovoNome(e.target.value)}
+              onChange={handleChange}
+              ref={nomeInputRef}
             />
           </label>
+          {erroNome && (
+            <p style={{ color: "red", fontSize: "0.8rem" }}>{erroNome}</p>
+          )}
         </div>
         <div>
           <label>
             Descrição
             <input
               type="text"
+              name="novaDescricao"
               value={novaDescricao}
-              onChange={(e) => setNovaDescricao(e.target.value)}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -115,8 +146,9 @@ function HabitList() {
             Categoria
             <input
               type="text"
+              name="novaCategoria"
               value={novaCategoria}
-              onChange={(e) => setNovaCategoria(e.target.value)}
+              onChange={handleChange}
             />
           </label>
         </div>

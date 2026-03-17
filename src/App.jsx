@@ -16,13 +16,13 @@ function App() {
 
   return (
     <div>
-      <Contador />
-      <Header />
+      <Header titulo="My Daily Habits" />
       <BemVindo nomeUsuario="turma iteam" totalHabitos={habits.length} />
       <SecaoHabitos titulo="Meus Hábitos">
         <HabitList habits={habits} />
       </SecaoHabitos>
       <Footer />
+      <Contador />
     </div>
   );
 }
