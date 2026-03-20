@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 
 export default function Contador() {
   const [contador, setContador] = useState(0);
@@ -17,4 +17,4 @@ export default function Contador() {
       <button onClick={zerar}>Zerar</button>
     </div>
   );
-}
+}*/

@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import HabitCard from "./HabitCard";
 import { useHabits } from "../contexts/HabitsContext";
 
@@ -6,7 +7,8 @@ import { useHabits } from "../contexts/HabitsContext";
   const { habits, removerHabit } = useHabits();
 }*/
 function HabitList() {
-  const { habits, adicionarHabit, removerHabit, toggleAtivo } = useHabits();
+  const { habits, adicionarHabit, removerHabit } = useHabits();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     novoNome: "",
@@ -58,7 +60,7 @@ function HabitList() {
     });
 
     setErroNome("");
-    nomeInputRef.current?.focus();
+    navigate("/habitos");
   };
 
   if (!habits) return null;
@@ -109,10 +111,10 @@ function HabitList() {
             <input
               type="number"
               name="novaMeta"
-              min="1"
-              max="7"
               value={form.novaMeta}
               onChange={handleChange}
+              min="1"
+              max="7"
             />
           </label>
         </div>
@@ -128,13 +130,14 @@ function HabitList() {
         {habits.map((habit) => (
           <HabitCard
             key={habit.id}
+            id={habit.id}
             nome={habit.nome}
             descricao={habit.descricao}
             meta={habit.meta}
             ativo={habit.ativo}
             diasFeitos={habit.diasFeitos}
+            categoria={habit.categoria}
             onRemover={() => removerHabit(habit.id)}
-            onToggle={() => toggleAtivo(habit.id)}
           />
         ))}
       </ul>
